@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-md-2">
             <div class="sidebar">
-              <a href="#!/" class="active">Home</a>
+              <a href="#!/">Home</a>
               <a href="#!about">About</a>
               <a href="#!resume">Resume</a>
               <a href="#!contact">Contact</a>
@@ -55,6 +55,12 @@
             templateUrl : "pages/contact.html"
           });
         });
+        $(function() {
+        $('.sidebar a').click(function() {
+           $('.nav a').removeClass();
+           $($(this).attr('href')).addClass('active');
+        });
+     });
         </script>
   </body>
 </html>
