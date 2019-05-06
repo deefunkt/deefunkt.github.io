@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="row">
           <div class="col-md-2">
-            <div class="sidebar">
+            <div class="sidebar" id="navbar">
               <a href="#!/">Home</a>
               <a href="#!about">About</a>
               <a href="#!resume">Resume</a>
@@ -55,12 +55,11 @@
             templateUrl : "pages/contact.html"
           });
         });
-        $(function() {
-        $('.sidebar a').click(function() {
-           $('.nav a').removeClass();
-           $($(this).attr('href')).addClass('active');
+
+        $('.sidebar .sidebar-link').on("click", function() {
+           $('.sidebar').find(".active").removeClass("active");
+           $(this).addClass("active");
         });
-     });
         </script>
   </body>
 </html>
