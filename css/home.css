@@ -210,11 +210,7 @@ height: 15em;
 .content {
 text-align: center;
 }
-.content svg {
-fill: #fff;
-width: 3em;
-margin: 1.25em auto 1em;
-}
+
 .content h1 {
 font-weight: lighter;
 font-size: 1.75em;
