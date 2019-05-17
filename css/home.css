@@ -115,12 +115,16 @@ box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
 background: rgba(16, 63, 236, 0.75);
 -webkit-transform: rotateZ(225deg);
         transform: rotateZ(225deg);
+/* -webkit-animation: spin-reverse 10s infinite;
+animation: spin-pulse 10s infinite; */
 }
 
 .two {
 background: rgba(37, 172, 162, 0.75);
 -webkit-transform: rotateZ(180deg);
         transform: rotateZ(180deg);
+/* -webkit-animation: spin-pulse 5s infinite;
+animation: spin-pulse 8s infinite;*/
 }
 
 .three {
