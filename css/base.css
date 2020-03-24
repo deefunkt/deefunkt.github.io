@@ -1,6 +1,6 @@
 :root {
     --navbar-width: 280px;
-    --highlight-icon-color: #149ddd;
+    --highlight-icon-color: #dd1414;
     --highlight-text-color: #ffffffdd;
     --highlight-pop: #149ddd;
     --background-color-navbar:rgb(60, 0, 0);
@@ -263,7 +263,7 @@ section {
 .grid-item-card {
     background-color: var(--card-color);
     margin: auto;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.621), 0 3px 6px rgba(0, 0, 0, 0.621);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.658), 0 3px 8px rgba(0, 0, 0, 0.541);
 }
 
 .grid-item-card img{ 
@@ -325,8 +325,17 @@ section {
     .grid-item {
       width: 50%;
     }
+    
+    .grid-item-card h6 {
+        font-size: 0.875rem;
+    }
 
     .navbar-nav .container-fluid {
         max-width: 80%;
+    }
+
+    section {
+        padding: 1rem 0;
+        overflow: hidden;
     }
   }
