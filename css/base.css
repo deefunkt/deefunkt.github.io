@@ -7,7 +7,7 @@
     --background-body-color: #040b14f5;
     --text-color: #ffffffdd;
     --navbar-text-color: #a8a9b4;
-    --card-color: rgb(41, 2, 2); 
+    --card-color: rgb(39, 1, 1); 
 }
 
 .name {
@@ -127,322 +127,6 @@ header {
     background-size: 100% 100%
 }
 
-@media (max-width: 575.98px) {
-    .navbar-expand-sm>.container,.navbar-expand-sm>.container-fluid {
-        padding-right:0;
-        padding-left: 0
-    }
-}
-
-@media (min-width: 576px) {
-    .navbar-expand-sm {
-        -webkit-box-orient:horizontal;
-        -webkit-box-direction: normal;
-        flex-flow: row nowrap;
-        -webkit-box-pack: start;
-        justify-content: flex-start
-    }
-
-    .navbar-expand-sm .navbar-nav {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        flex-direction: row
-    }
-
-    .navbar-expand-sm .navbar-nav .dropdown-menu {
-        position: absolute
-    }
-
-    .navbar-expand-sm .navbar-nav .nav-link {
-        padding-right: .5rem;
-        padding-left: .5rem
-    }
-
-    .navbar-expand-sm>.container,.navbar-expand-sm>.container-fluid {
-        flex-wrap: nowrap
-    }
-
-    .navbar-expand-sm .navbar-collapse {
-        display: -webkit-box !important;
-        display: flex !important;
-        flex-basis: auto
-    }
-
-    .navbar-expand-sm .navbar-toggler {
-        display: none
-    }
-}
-
-@media (max-width: 767.98px) {
-    .navbar-expand-md>.container,.navbar-expand-md>.container-fluid {
-        padding-right:0;
-        padding-left: 0
-    }
-}
-
-@media (min-width: 768px) {
-    .navbar-expand-md {
-        -webkit-box-orient:horizontal;
-        -webkit-box-direction: normal;
-        flex-flow: row nowrap;
-        -webkit-box-pack: start;
-        justify-content: flex-start
-    }
-
-    .navbar-expand-md .navbar-nav {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        flex-direction: row
-    }
-
-    .navbar-expand-md .navbar-nav .dropdown-menu {
-        position: absolute
-    }
-
-    .navbar-expand-md .navbar-nav .nav-link {
-        padding-right: .5rem;
-        padding-left: .5rem
-    }
-
-    .navbar-expand-md>.container,.navbar-expand-md>.container-fluid {
-        flex-wrap: nowrap
-    }
-
-    .navbar-expand-md .navbar-collapse {
-        display: -webkit-box !important;
-        display: flex !important;
-        flex-basis: auto
-    }
-
-    .navbar-expand-md .navbar-toggler {
-        display: none
-    }
-}
-
-@media (max-width: 991.98px) {
-    .navbar-expand-lg>.container,.navbar-expand-lg>.container-fluid {
-        padding-right:0;
-        padding-left: 0
-    }
-}
-
-@media (min-width: 992px) {
-    .navbar-expand-lg {
-        -webkit-box-orient:horizontal;
-        -webkit-box-direction: normal;
-        flex-flow: row nowrap;
-        -webkit-box-pack: start;
-        justify-content: flex-start
-    }
-
-    .navbar-expand-lg .navbar-nav {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        flex-direction: row
-    }
-
-    .navbar-expand-lg .navbar-nav .dropdown-menu {
-        position: absolute
-    }
-
-    .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: .5rem;
-        padding-left: .5rem
-    }
-
-    .navbar-expand-lg>.container,.navbar-expand-lg>.container-fluid {
-        flex-wrap: nowrap
-    }
-
-    .navbar-expand-lg .navbar-collapse {
-        display: -webkit-box !important;
-        display: flex !important;
-        flex-basis: auto
-    }
-
-    .navbar-expand-lg .navbar-toggler {
-        display: none
-    }
-}
-
-@media (max-width: 1199.98px) {
-    .navbar-expand-xl>.container,.navbar-expand-xl>.container-fluid {
-        padding-right:0;
-        padding-left: 0
-    }
-}
-
-@media (min-width: 1200px) {
-    .navbar-expand-xl {
-        -webkit-box-orient:horizontal;
-        -webkit-box-direction: normal;
-        flex-flow: row nowrap;
-        -webkit-box-pack: start;
-        justify-content: flex-start
-    }
-
-    .navbar-expand-xl .navbar-nav {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        flex-direction: row
-    }
-
-    .navbar-expand-xl .navbar-nav .dropdown-menu {
-        position: absolute
-    }
-
-    .navbar-expand-xl .navbar-nav .nav-link {
-        padding-right: .5rem;
-        padding-left: .5rem
-    }
-
-    .navbar-expand-xl>.container,.navbar-expand-xl>.container-fluid {
-        flex-wrap: nowrap
-    }
-
-    .navbar-expand-xl .navbar-collapse {
-        display: -webkit-box !important;
-        display: flex !important;
-        flex-basis: auto
-    }
-
-    .navbar-expand-xl .navbar-toggler {
-        display: none
-    }
-}
-
-.navbar-expand {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-flow: row nowrap;
-    -webkit-box-pack: start;
-    justify-content: flex-start
-}
-
-.navbar-expand>.container,.navbar-expand>.container-fluid {
-    padding-right: 0;
-    padding-left: 0
-}
-
-.navbar-expand .navbar-nav {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-direction: row
-}
-
-.navbar-expand .navbar-nav .dropdown-menu {
-    position: absolute
-}
-
-.navbar-expand .navbar-nav .nav-link {
-    padding-right: .5rem;
-    padding-left: .5rem
-}
-
-.navbar-expand>.container,.navbar-expand>.container-fluid {
-    flex-wrap: nowrap
-}
-
-.navbar-expand .navbar-collapse {
-    display: -webkit-box !important;
-    display: flex !important;
-    flex-basis: auto
-}
-
-.navbar-expand .navbar-toggler {
-    display: none
-}
-
-.navbar-light .navbar-brand {
-    color: rgba(0,0,0,0.9)
-}
-
-.navbar-light .navbar-brand:hover,.navbar-light .navbar-brand:focus {
-    color: rgba(0,0,0,0.9)
-}
-
-.navbar-light .navbar-nav .nav-link {
-    color: rgba(0,0,0,0.5)
-}
-
-.navbar-light .navbar-nav .nav-link:hover,.navbar-light .navbar-nav .nav-link:focus {
-    color: rgba(0,0,0,0.7)
-}
-
-.navbar-light .navbar-nav .nav-link.disabled {
-    color: rgba(0,0,0,0.3)
-}
-
-.navbar-light .navbar-nav .show>.nav-link,.navbar-light .navbar-nav .active>.nav-link,.navbar-light .navbar-nav .nav-link.show,.navbar-light .navbar-nav .nav-link.active {
-    color: rgba(0,0,0,0.9)
-}
-
-.navbar-light .navbar-toggler {
-    color: rgba(0,0,0,0.5);
-    border-color: rgba(0,0,0,0.1)
-}
-
-.navbar-light .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0,0,0,0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
-}
-
-.navbar-light .navbar-text {
-    color: rgba(0,0,0,0.5)
-}
-
-.navbar-light .navbar-text a {
-    color: rgba(0,0,0,0.9)
-}
-
-.navbar-light .navbar-text a:hover,.navbar-light .navbar-text a:focus {
-    color: rgba(0,0,0,0.9)
-}
-
-.navbar-dark .navbar-brand {
-    color: #fff
-}
-
-.navbar-dark .navbar-brand:hover,.navbar-dark .navbar-brand:focus {
-    color: #fff
-}
-
-.navbar-dark .navbar-nav .nav-link {
-    color: rgba(255,255,255,0.5)
-}
-
-.navbar-dark .navbar-nav .nav-link:hover,.navbar-dark .navbar-nav .nav-link:focus {
-    color: rgba(255,255,255,0.75)
-}
-
-.navbar-dark .navbar-nav .nav-link.disabled {
-    color: rgba(255,255,255,0.25)
-}
-
-.navbar-dark .navbar-nav .show>.nav-link,.navbar-dark .navbar-nav .active>.nav-link,.navbar-dark .navbar-nav .nav-link.show,.navbar-dark .navbar-nav .nav-link.active {
-    color: #fff
-}
-
-.navbar-dark .navbar-toggler {
-    color: rgba(255,255,255,0.5);
-    border-color: rgba(255,255,255,0.1)
-}
-
-.navbar-dark .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
-}
-
-.navbar-dark .navbar-text {
-    color: rgba(255,255,255,0.5)
-}
-
-.navbar-dark .navbar-text a {
-    color: #fff
-}
-
-.navbar-dark .navbar-text a:hover,.navbar-dark .navbar-text a:focus {
-    color: #fff
-}
-
 .nav-item a {
     display: flex;
     align-items: center;
@@ -476,7 +160,7 @@ header {
 
 .main-wrapper {
     margin-left: 280px;
-    background: #fff
+    background: var(--background-body-color)
 }
 
 .main-wrapper .container-single-col {
@@ -511,7 +195,7 @@ section {
     height: 1rem;
     overflow: hidden;
     font-size: .75rem;
-    background-color: #e9ecef;
+    background-color: var(--highlight-icon-color);
     border-radius: .25rem;
 }
 
@@ -528,17 +212,17 @@ section {
     -ms-flex-pack: center;
     justify-content: center;
     overflow: hidden;
-    color: #fff;
+    color: var(--text-color);
     text-align: center;
     white-space: nowrap;
-    background-color: #007bff;
+    background-color: var(--highlight-icon-color);
     transition: width .6s ease;
 }
 .skills .progress-bar {
     width: 1px;
     height: 10px;
     transition: .9s;
-    background-color: #149ddd;
+    background-color: var(--highlight-icon-color);
 }
 
 .filters {
@@ -571,14 +255,15 @@ section {
 .grid {
     padding-bottom: 2rem;
 }
-
 .grid-item { 
     width: 25%; 
     padding:0.5rem;
 }
+
 .grid-item-card {
     background-color: var(--card-color);
     margin: auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.621), 0 3px 6px rgba(0, 0, 0, 0.621);
 }
 
 .grid-item-card img{ 
@@ -599,3 +284,49 @@ section {
 .trend-box {
     text-align: center;
 }
+
+
+@media screen and (max-width: 992px) {
+    /* On screens that are 992px wide or less, go from four columns to two columns */
+    .grid-item {
+      width: 33%;
+    }
+    .grid-item-card img{ 
+        max-height: 2rem;
+        margin-left: auto;
+        padding: 2px;
+        padding-right: 0.5rem;
+    }   
+    .header {
+        position: static;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    .navbar-nav .container-fluid {
+        max-width: 50%;
+    }
+
+    .nav-item{
+        display: table-cell;
+        /* width: 10%; */
+        margin: 0;
+    }
+    #main {
+        margin: 0;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    
+    /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+    .grid-item {
+      width: 50%;
+    }
+
+    .navbar-nav .container-fluid {
+        max-width: 80%;
+    }
+  }
