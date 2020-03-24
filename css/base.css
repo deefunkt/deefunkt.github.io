@@ -1,13 +1,14 @@
 :root {
+    background-color: #121212;
     --navbar-width: 280px;
-    --highlight-icon-color: #dd1414;
-    --highlight-text-color: #ffffffdd;
-    --highlight-pop: #149ddd;
-    --background-color-navbar:rgb(60, 0, 0);
-    --background-body-color: #040b14f5;
-    --text-color: #ffffffdd;
-    --navbar-text-color: #a8a9b4;
-    --card-color: rgb(39, 1, 1); 
+    --primary-color: #b71c1c;
+    --text-emphasis: #ffffffdd;
+    --background-navbar-color:rgba(127, 0, 0, 0.38);
+    --background-body-color: rgba(183, 28, 28, 0.03);
+    --text-color: #ffffffd7;
+    --navbar-text-color: #ffffffd7;
+    --card-color: rgba(183, 28, 28, 0.16); /*primary color with 5% opacity*/
+    --section-card-color: rgba(255, 255, 255, 0.05);
 }
 
 .name {
@@ -16,11 +17,11 @@
 }
 
 .name a {
-    color: var(--highlight-text-color);
+    color: var(--text-emphasis);
 }
 .name a:hover {
     text-decoration: none;
-    color: var(--highlight-text-color);
+    color: var(--text-emphasis);
 }
 
 .profile-section {
@@ -58,7 +59,7 @@ header {
     z-index: 9999;
     transition: all 0.5s;
     padding: 0 15px;
-    background: var(--background-color-navbar);
+    background: var(--background-navbar-color);
     overflow-y: auto;
 }
 
@@ -139,11 +140,11 @@ header {
 
 .nav-item a:hover, .nav-item .active > a {
     text-decoration: none;
-    color: var(--highlight-text-color);
+    color: var(--text-emphasis);
 }
 
 .nav-item a:hover svg, .nav-item a.active > svg {
-    color: var(--highlight-icon-color)
+    color: var(--primary-color)
 }
 
 .svg-inline--fa {
@@ -168,8 +169,16 @@ header {
 }
 
 section {
-    padding: 3rem 0;
+    padding: 2rem 0;
     overflow: hidden;
+}
+
+.section-card {
+    background-color: var(--section-card-color);
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.658), 0 3px 8px rgba(0, 0, 0, 0.541);
 }
 
 .section-title h2 {
@@ -183,7 +192,7 @@ section {
     display: inline-block;
     width: 5px;
     height: 100%;
-    background: var(--highlight-icon-color);
+    background: var(--primary-color);
     position: absolute;
     left: 0;
     top: 0
@@ -195,7 +204,7 @@ section {
     height: 1rem;
     overflow: hidden;
     font-size: .75rem;
-    background-color: var(--highlight-icon-color);
+    background-color: var(--primary-color);
     border-radius: .25rem;
 }
 
@@ -215,38 +224,35 @@ section {
     color: var(--text-color);
     text-align: center;
     white-space: nowrap;
-    background-color: var(--highlight-icon-color);
+    background-color: var(--primary-color);
     transition: width .6s ease;
 }
 .skills .progress-bar {
     width: 1px;
     height: 10px;
     transition: .9s;
-    background-color: var(--highlight-icon-color);
+    background-color: var(--primary-color);
 }
 
 .filters {
     padding: 0;
-    margin: 0 auto 35px auto;
+    margin: 0 auto 1rem auto;
     list-style: none;
     text-align: center;
-    padding: 2px 15px;
 }
 
 .filters .type {
     cursor: pointer;
     display: inline-block;
-    padding: 10px 15px 8px 15px;
-    font-size: 14px;
+    padding: 1rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    line-height: 1;
     text-transform: uppercase;
     color: var(--text-color);
-    margin-bottom: 5px;
     transition: all 0.3s ease-in-out;
 }
 .filters li.type:hover, .filters li.active {
-    color: var(--highlight-icon-color);
+    color: var(--primary-color);
 }
 .filters .type:last-child {
     margin-right: 0
@@ -285,6 +291,22 @@ section {
     text-align: center;
 }
 
+.resume-summary-card {
+    background-color: var(--card-color);
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.658), 0 3px 8px rgba(0, 0, 0, 0.541);
+}
+
+.contact-card {
+    background-color: var(--card-color);
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.658), 0 3px 8px rgba(0, 0, 0, 0.541);
+    text-align: center;
+    width: inherit;
+}
 
 @media screen and (max-width: 992px) {
     /* On screens that are 992px wide or less, go from four columns to two columns */
@@ -297,6 +319,9 @@ section {
         padding: 2px;
         padding-right: 0.5rem;
     }   
+    .grid-item-card h6 {
+        font-size: 0.82rem;
+    }
     .header {
         position: static;
         border: none;
@@ -327,7 +352,7 @@ section {
     }
     
     .grid-item-card h6 {
-        font-size: 0.875rem;
+        font-size: 0.82rem;
     }
 
     .navbar-nav .container-fluid {
