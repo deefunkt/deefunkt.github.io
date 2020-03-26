@@ -702,11 +702,24 @@
             </section>
         </main>
         <script>
-            
+            var color_array = [];
+            color_array.push(getComputedStyle(document.documentElement).getPropertyValue('--card-color1'));
+            color_array.push(getComputedStyle(document.documentElement).getPropertyValue('--card-color2'));
+            color_array.push(getComputedStyle(document.documentElement).getPropertyValue('--card-color3'));
+            color_array.push(getComputedStyle(document.documentElement).getPropertyValue('--card-color4'));
+            var num_cards = $('.grid-item-card').length;
             AOS.init();
             // init Isotope
             var $skillgrid = $('.grid');
+            randomizeGridCardColors();
+
             
+            function randomizeGridCardColors() {
+                for (var i = 0; i < num_cards; i++){
+                    var num_color = Math.floor(Math.random() * color_array.length);
+                    $('.grid-item-card')[i].style.backgroundColor = color_array[num_color];
+                }
+            }
             $skillgrid.isotope({
                 itemSelector: ".grid-item", 
                 layoutMode: "fitRows" ,
@@ -716,6 +729,8 @@
                 var filterValue = $(this).attr('data-filter');
                 $('.grid').isotope({ filter: filterValue });
                 AOS.init();
+
+            
             });
              // change is-checked class on buttons
             $('.filters').each( function( i, typeGroup ) {
