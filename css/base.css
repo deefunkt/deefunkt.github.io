@@ -167,7 +167,7 @@ header {
 } */
 
 .main-wrapper {
-    /* margin-left: 280px; */
+    margin-left: 10rem;
     
     background: var(--background-body-color)
 }
