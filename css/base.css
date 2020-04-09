@@ -1,6 +1,6 @@
 :root {
     background-color: #121212;
-    --navbar-width: 280px;
+    --navbar-width: 15%;
     --primary-color: #b71c1c;
     --text-emphasis: #ffffffdd;
     --background-navbar-color:#260101;
@@ -66,16 +66,16 @@ header {
     z-index: 9999;
     transition: all 0.5s;
     padding: 0 1rem;
-    background: var(--background-navbar-color);
     overflow-y: auto;
 }
 
-.navbar-nav {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.menu-container {
+    background-color: var(--background-navbar-color);
+    margin-top: 5rem;
+    height:30rem;
+    width: 5rem;
+    border-radius: 2rem;
 }
-
 
 .navbar-nav {
     display: -webkit-box;
@@ -85,11 +85,14 @@ header {
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
+    padding-top: 2rem;
     list-style: none
 }
 
 .navbar-nav .nav-link {
     padding-right: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     padding-left: 0
 }
 
@@ -330,14 +333,7 @@ section {
     .grid-item-card h6 {
         font-size: 0.82rem;
     }
-    .header {
-        position: static;
-        border: none;
-        border-radius: 0;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-    }
+
     .navbar-nav .container-fluid {
         max-width: 50%;
     }
@@ -366,7 +362,16 @@ section {
     .navbar-nav .container-fluid {
         max-width: 80%;
     }
-
+    .menu-container {
+        background-color: var(--background-navbar-color);
+        margin-top: 5rem;
+        width: 5rem;
+        border-radius: 2rem;
+    }
+    header{
+        width: 0;
+        padding:0;
+    }
     section {
         padding: 1rem 0;
         overflow: hidden;
