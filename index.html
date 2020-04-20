@@ -768,7 +768,9 @@
             $('#facts .filters').on( 'click', '.type', function() {
                 var filterValue = $(this).attr('data-filter');
                 $('#facts .grid').isotope({ filter: filterValue });
-                AOS.init();
+                $maingrid.isotope('layout');
+                AOS.refresh();
+                // AOS.init();
             });
              // change is-checked class on buttons
             $('#facts .filters').each( function( i, typeGroup ) {
