@@ -170,8 +170,8 @@ header {
 } */
 
 .main-wrapper {
-    margin-left: 10rem;
-    
+    margin-left: 1rem;
+    margin-right: 1rem;
     background: var(--background-body-color)
 }
 
@@ -180,7 +180,9 @@ header {
 }
 
 section {
-    padding: 2rem 0;
+    padding: 1rem 0;
+    max-width: 50%;
+    min-width: 30rem;
     overflow: hidden;
 }
 
@@ -269,6 +271,9 @@ section {
     margin-right: 0
 }
 
+.grid-sizer, 
+#main .layout-grid-item { width: 50%; }
+
 .grid {
     padding-bottom: 2rem;
 }
@@ -282,6 +287,11 @@ section {
     margin: auto;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.658), 0 3px 8px rgba(0, 0, 0, 0.541);
 }
+.grid-item-card .card-title {
+    font-size: calc(8px + 0.45vw);
+    margin: 0;
+    align-self: center;
+}
 
 .grid-item-card img{ 
     max-height: 3rem;
@@ -289,10 +299,22 @@ section {
     padding: 2px;
     padding-right: 1rem;
 }
+
+.grid-card-content {
+    flex-wrap: nowrap;
+}
+.grid-card-content .col-xs-8 {
+    width: 65%;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+.grid-card-content .col-xs-4 {
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
 .grid-item-skill {
-    height: 50%;
+    height: 100%;
     margin: auto;
-    margin-top: 0.75rem;
 }
 
 .trends {
@@ -331,7 +353,7 @@ section {
         padding-right: 0.5rem;
     }   
     .grid-item-card h6 {
-        font-size: 0.82rem;
+        font-size: calc(12px + 0.5vw);
     }
 
     .navbar-nav .container-fluid {
@@ -355,8 +377,8 @@ section {
       width: 50%;
     }
     
-    .grid-item-card h6 {
-        font-size: 0.82rem;
+    #facts .grid-item-card h6 {
+        font-size: calc(12px + 0.5vw);
     }
 
     .navbar-nav .container-fluid {
