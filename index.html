@@ -93,7 +93,7 @@
         </header> -->
 
         <main id="main" class="main-wrapper layout-grid">
-            <div class="grid-sizer"></div>
+            <div class="layout-grid-sizer"></div>
             <section id="about" class="about layout-grid-item">
                 <div class="container">
                     <div class="card section-card">
@@ -753,6 +753,10 @@
             $skillgrid.isotope({
                 itemSelector: "#facts .grid-item", 
                 layoutMode: "fitRows" ,
+                masonry: {
+                    // use element for option
+                    columnWidth: '.skill-grid-sizer'
+                }
             });
 
             $maingrid.isotope({
@@ -761,7 +765,7 @@
                 percentPosition: true,
                 masonry: {
                     // use element for option
-                    columnWidth: '.grid-sizer'
+                    columnWidth: '.layout-grid-sizer'
                 }
             });
             // filter items on button click
@@ -779,7 +783,63 @@
                     $typeGroup.find('.active').removeClass('active');
                     $( this ).addClass('active');
                 });
-            });            
+            });
+
+            $skillgrid.on( 'click', '.grid-item-card', function() {
+                var itemContent = this;
+                setItemContentPixelSize( itemContent );
+
+                var itemElem = itemContent.parentNode;
+                $( itemElem ).toggleClass('is-expanded');
+
+                // force redraw
+                var redraw = itemContent.offsetWidth;
+                // renable default transition
+                itemContent.style[ transitionProp ] = '';
+
+                addTransitionListener( itemContent );
+                setItemContentTransitionSize( itemContent, itemElem );
+
+                $skillgrid.isotope('layout');
+            });
+
+            var docElemStyle = document.documentElement.style;
+            var transitionProp = typeof docElemStyle.transition == 'string' ? 'transition' : 'WebkitTransition';
+            var transitionEndEvent = {
+                WebkitTransition: 'webkitTransitionEnd',
+                transition: 'transitionend'
+            }[ transitionProp ];
+
+            function setItemContentPixelSize( itemContent ) {
+                var previousContentSize = getSize( itemContent );
+                // disable transition
+                itemContent.style[ transitionProp ] = 'none';
+                // set current size in pixels
+                itemContent.style.width = previousContentSize.width + 'px';
+                itemContent.style.height = previousContentSize.height + 'px';
+            }
+
+            function addTransitionListener( itemContent ) {
+                if ( !transitionProp ) {
+                    return;
+                }
+                // reset 100%/100% sizing after transition end
+                var onTransitionEnd = function() {
+                    itemContent.style.width = '';
+                    itemContent.style.height = '';
+                    itemContent.removeEventListener( transitionEndEvent, onTransitionEnd );
+                };
+                itemContent.addEventListener( transitionEndEvent, onTransitionEnd );
+            }
+
+            function setItemContentTransitionSize( itemContent, itemElem ) {
+                // set new size
+                var size = getSize( itemElem );
+                itemContent.style.width = size.width + 'px';
+                itemContent.style.height = size.height + 'px';
+            }
+
+
             // Smooth scroll for the navigation menu and links with .scrollto classes
             $(document).on('click', '.navbar-nav a, .scrollto', function(e) {
                 if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
