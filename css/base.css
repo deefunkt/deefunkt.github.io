@@ -3,7 +3,7 @@
     --navbar-width: 15%;
     --primary-color: #b71c1c;
     --text-emphasis: #ffffffdd;
-    --background-navbar-color:#260101;
+    --background-navbar-color:#0D0D0D;
     /* --background-body-color: rgba(183, 28, 28, 0.03); */
     --background-body-color: #121212;
 
@@ -181,8 +181,6 @@ header {
 
 section {
     padding: 1rem 0;
-    max-width: 50%;
-    min-width: 30rem;
     overflow: hidden;
 }
 
@@ -288,7 +286,7 @@ section {
     }
 
 .grid-item-card {
-    background-color: var(--card-color1);
+    background-color: var(--card-color4);
     margin: auto;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.658), 0 3px 8px rgba(0, 0, 0, 0.541);
     width: 100%;
@@ -299,7 +297,7 @@ section {
 }
 
 .grid-item:hover .grid-item-card:hover{
-    background: var(--card-color3);
+    background: var(--card-color1);
     cursor: pointer;
 }
 
@@ -311,12 +309,12 @@ section {
   }
   
 
-.grid-item.is-expanded {
-  z-index: 2;
+.grid-item.is-expanded .grid-item-card:hover {
+    background: var(--card-color3)
 }
 
 .grid-item.is-expanded .grid-item-card {
-  background: var(--card-color3)
+  background: var(--card-color2)
 }
 
 .grid-item-card .card-title {
@@ -329,7 +327,7 @@ section {
     max-height: 3rem;
     margin-left: auto;
     padding: 2px;
-    padding-right: 1rem;
+    padding-right: 0.5vw;
 }
 
 .grid-card-content {
@@ -375,14 +373,16 @@ section {
 
 @media screen and (max-width: 992px) and (min-width: 600px){
     /* On screens that are 992px wide or less, go from four columns to two columns */
-    #facts .grid-item {
-      width: 33%;
+    .skill-grid-sizer,
+    .grid-item {
+        width: 50%;
     }
+
     .grid-item-card img{ 
         max-height: 2rem;
         margin-left: auto;
         padding: 2px;
-        /* padding-right: 0.5rem; */
+        padding-right: 0.25rem;
     }   
     .grid-item-card h6 {
         font-size: calc(11px + 0.5vw);
@@ -409,6 +409,10 @@ section {
     .grid-item {
         width: 50%;
     }
+
+    .layout-grid-sizer, 
+    #main .layout-grid-item { width: 100%; }
+
     
     #facts .grid-item-card h6 {
         font-size: calc(11px + 0.5vw);
