@@ -7,12 +7,13 @@
     /* --background-body-color: rgba(183, 28, 28, 0.03); */
     --background-body-color: #121212;
 
-    --text-color: #ffffffd7;
+    --text-color: #ffffffb4;
     --navbar-text-color: #ffffffd7;
     --card-color1:#400202; 
     --card-color2:#730202;
     --card-color3:#A60505;
-    --card-color4:#260101;
+    /* --card-color4:#260101; */
+    --card-color4: rgba(166, 5, 5, 0.137);
     /* primary color with 5% opacity */
     --resume-summary-card-color: #730202;
     --section-card-color: rgba(255, 255, 255, 0.02);
@@ -202,7 +203,7 @@ section {
 .section-title h2:before {
     content: "";
     display: inline-block;
-    width: 5px;
+    width: 0.4rem;
     height: 100%;
     background: var(--primary-color);
     position: absolute;
@@ -320,15 +321,17 @@ section {
 
 .grid-item-card .card-title {
     font-size: calc(8px + 0.45vw);
+    word-wrap: break-word;
     margin: 0;
     align-self: center;
 }
 
 .grid-item-card img{ 
-    max-height: 3rem;
+    max-height: 2.5rem;
+    width: auto;
     margin-left: auto;
     padding: 2px;
-    padding-right: 0.5vw;
+    /* padding-right: 0.5vw; */
 }
 
 .grid-card-content {
@@ -342,6 +345,8 @@ section {
 .grid-card-content .col-xs-4 {
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
+    padding-left: 0.2vw;
+    padding-right: 0.2vw;
 }
 .grid-item-skill {
     height: 100%;
@@ -389,7 +394,7 @@ section {
         max-height: 2rem;
         margin-left: auto;
         padding: 2px;
-        padding-right: 0.25rem;
+        /* padding-right: 0.3rem; */
     }   
     .grid-item-card h6 {
         font-size: calc(11px + 0.5vw);
