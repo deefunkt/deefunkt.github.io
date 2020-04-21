@@ -207,6 +207,7 @@ section {
     height: 100%;
     background: var(--primary-color);
     position: absolute;
+    border-radius: 0.15rem;
     left: 0;
     top: 0
 }
@@ -305,7 +306,7 @@ section {
 
 /* both item and item content change size */
 .grid-item.is-expanded {
-    width: 60%;
+    width: 50%;
     height: 200px;
     z-index: 2;
   }
@@ -348,6 +349,18 @@ section {
     padding-left: 0.2vw;
     padding-right: 0.2vw;
 }
+
+.grid-item.grid-item .grid-card-description {
+    height: 0;
+    visibility: hidden;
+} 
+
+.grid-item.grid-item.is-expanded .grid-card-description {
+    visibility: visible;
+    height: 100%;
+    padding-left: calc(3px + 0.75vw);
+    padding-right: calc(3px + 0.75vw);
+} 
 .grid-item-skill {
     height: 100%;
     margin: auto;
@@ -421,7 +434,12 @@ section {
     .grid-item {
         width: 50%;
     }
-
+    /* both item and item content change size */
+    .grid-item.is-expanded {
+        width: 100%;
+        height: 200px;
+        z-index: 2;
+    }
     .layout-grid-sizer, 
     #main .layout-grid-item { width: 100%; }
 
