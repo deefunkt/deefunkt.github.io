@@ -27,9 +27,9 @@ function insertSkillDescription(skillcard){
 var skills = {};
 skills = [
     {"name":"C/C++","tags":["grid-item","mtrx","rev-eng","languages"],"img":"./images/icons8-c++-48.png",
-    "desc":""},
+    "desc":"My C++ description"},
     {"name":"Volatility","tags":["grid-item","forensics"],"img":"./images/icons8-detective-64.png",
-    "desc":""},
+    "desc":"My volatility description"},
     {"name":"x86 assembly","tags":["grid-item","plat-arch","mtrx","rev-eng","languages"],"img":"./images/icons8-microchip-48.png",
     "desc":""},
     {"name":"ARM assembly","tags":["grid-item","plat-arch","mtrx","rev-eng","languages"],"img":"./images/icons8-microchip-48.png",
