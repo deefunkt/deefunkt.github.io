@@ -94,6 +94,4 @@ skills = [
     "desc":""},
     {"name":"Powershell","tags":["grid-item","ent-sec","rev-eng","languages"],"img":"./images/icons8-windows-10-48.png",
     "desc":""},
-    {"name":"Powershell","tags":["grid-item","ent-sec","rev-eng","languages"],"img":"./images/icons8-windows-10-48.png"
-    ,"desc":""}
 ];
