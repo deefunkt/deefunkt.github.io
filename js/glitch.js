@@ -20,11 +20,16 @@ function setup() {
     background(0);
     let canvas = createCanvas(windowW, windowH);
     canvas.parent('main-canvas')
-    loadImage(imgSrc, function(img) {
+    img = loadImage('../images/redfabric.jpg', function(img) {
+        img.resize(windowWidth, windowHeight)
         glitch = new Glitch(img);
         isLoaded = true;
-    });
-      // Set text characteristics
+    }, loadImage(imgSrc, function(img) {
+        glitch = new Glitch(img);
+        isLoaded = true;
+    }));
+
+    // Set text characteristics
     // textFont(font);
     textSize(fontsize);
     textAlign(CENTER, CENTER);
@@ -52,7 +57,6 @@ function draw() {
 
 function isScrolledIntoView(el) {
     var rect = el.getBoundingClientRect();
-    var elemTop = rect.top;
     var elemBottom = rect.bottom;
     // Only completely visible elements return true:
     var isVisible = (elemBottom >= window.innerHeight - 0.5*window.innerHeight);
@@ -111,17 +115,12 @@ class Glitch {
     replaceData(destImg, srcPixels) {
         for (let y = 0; y < destImg.height; y++) {
             for (let x = 0; x < destImg.width; x++) {
-                let r, g, b, a;
                 let index;
-                index = (y * destImg.width + x) * this.channelLen;
-                r = index;
-                g = index + 1;
-                b = index + 2;
-                a = index + 3;
-                destImg.pixels[r] = srcPixels[r];
-                destImg.pixels[g] = srcPixels[g];
-                destImg.pixels[b] = srcPixels[b];
-                destImg.pixels[a] = srcPixels[a];
+                index = (y * destImg.width + x) * this.channelLen;                                                                
+                destImg.pixels[index] = srcPixels[index];
+                destImg.pixels[index + 1] = srcPixels[index + 1];
+                destImg.pixels[index + 2] = srcPixels[index + 2];
+                destImg.pixels[index + 3] = srcPixels[index + 3];
             }
         }
         destImg.updatePixels();
@@ -134,22 +133,17 @@ class Glitch {
         destPixels = new Uint8ClampedArray(srcImg.pixels);
         obj.t1 %= srcImg.height;
         obj.t1 += obj.speed;
-        //tempY = floor(noise(obj.t1) * srcImg.height);
-        tempY = floor(obj.t1);
+        tempY = floor(noise(obj.t1) * srcImg.height);
+        // tempY = floor(obj.t1);
         for (let y = 0; y < srcImg.height; y++) {
             if (tempY === y) {
                 for (let x = 0; x < srcImg.width; x++) {
-                    let r, g, b, a;
                     let index;
                     index = (y * srcImg.width + x) * this.channelLen;
-                    r = index;
-                    g = index + 1;
-                    b = index + 2;
-                    a = index + 3;
-                    destPixels[r] = srcImg.pixels[r] + obj.randX;
-                    destPixels[g] = srcImg.pixels[g] + obj.randX;
-                    destPixels[b] = srcImg.pixels[b] + obj.randX;
-                    destPixels[a] = srcImg.pixels[a];
+                    destPixels[index] = srcImg.pixels[index] + obj.randX;
+                    destPixels[index+1] = srcImg.pixels[index+1] + obj.randX;
+                    destPixels[index+2] = srcImg.pixels[index+2] + obj.randX;
+                    destPixels[index+3] = srcImg.pixels[index+3];
                 }
             }
         }
@@ -177,17 +171,10 @@ class Glitch {
                         let index;
 
                         index = (y * srcImg.width + x) * this.channelLen;
-                        r = index;
-                        g = index + 1;
-                        b = index + 2;
-                        a = index + 3;
-                        r2 = r + offsetX;
-                        g2 = g + offsetX;
-                        b2 = b + offsetX;
-                        destPixels[r] = srcImg.pixels[r2];
-                        destPixels[g] = srcImg.pixels[g2];
-                        destPixels[b] = srcImg.pixels[b2];
-                        destPixels[a] = srcImg.pixels[a];
+                        destPixels[index] = srcImg.pixels[index + offsetX];
+                        destPixels[index + 1] = srcImg.pixels[index + 1 + offsetX];
+                        destPixels[index + 2] = srcImg.pixels[index + 2 + offsetX];
+                        destPixels[index + 3] = srcImg.pixels[index + 3];
                 }
             }
         }
@@ -205,25 +192,17 @@ class Glitch {
         randR = (floor(random(-range, range)) * srcImg.width + floor(random(-range, range))) * this.channelLen;
         randG = (floor(random(-range, range)) * srcImg.width + floor(random(-range, range))) * this.channelLen;
         randB = (floor(random(-range, range)) * srcImg.width + floor(random(-range, range))) * this.channelLen;
+        // randa = (floor(random(0, 128)) + floor(random(0, 128)));
 
         for (let y = 0; y < srcImg.height; y++) {
             for (let x = 0; x < srcImg.width; x++) {
-                let r, g, b, a;
-                let r2, g2, b2, a2;
                 let index;
 
                 index = (y * srcImg.width + x) * this.channelLen;
-                r = index;
-                g = index + 1;
-                b = index + 2;
-                a = index + 3;
-                r2 = (r + randR) % srcImg.pixels.length;
-                g2 = (g + randG) % srcImg.pixels.length;
-                b2 = (b + randB) % srcImg.pixels.length;
-                destPixels[r] = srcImg.pixels[r2];
-                destPixels[g] = srcImg.pixels[g2];
-                destPixels[b] = srcImg.pixels[b2];
-                destPixels[a] = srcImg.pixels[a];
+                destPixels[index] = srcImg.pixels[(index + randR) % srcImg.pixels.length];
+                destPixels[index+1] = srcImg.pixels[(index+1 + randG) % srcImg.pixels.length];
+                destPixels[index+2] = srcImg.pixels[(index+2 + randB) % srcImg.pixels.length];
+                destPixels[index+3] = srcImg.pixels[index+3];            
             }
         }
 
@@ -251,7 +230,7 @@ class Glitch {
         this.replaceData(this.imgOrigin, this.copyData);
 
         // sometimes pass without effect processing
-        let n = floor(random(100));
+        let n = floor(random(150));
         if (n > 75 && this.throughFlag) {
             this.throughFlag = false;
             setTimeout(() => {
