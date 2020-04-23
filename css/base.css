@@ -215,13 +215,17 @@ section {
   }
   
 
-.grid-item.is-expanded .grid-item-card:hover {
-    background: var(--card-color3)
+.grid-item:active .grid-item-card:active {
+    background: var(--card-color2)
 }
 
 .grid-item.is-expanded .grid-item-card {
   background: var(--card-color2)
 }
+.grid-item.is-expanded:hover .grid-item-card:hover {
+    background: var(--card-color2)
+  }
+  
 
 .grid-item-card .card-title {
     font-size: calc(8px + 0.45vw);

@@ -235,7 +235,7 @@ class Glitch {
             this.throughFlag = false;
             setTimeout(() => {
                 this.throughFlag = true;
-            }, floor(random(40, 400)));
+            }, floor(random(40, 800)));
         }
         if (!this.throughFlag) {
             push();
