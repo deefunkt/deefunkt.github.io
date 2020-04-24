@@ -1,30 +1,9 @@
 
-var color_array = [];
-color_array.push(getComputedStyle(document.documentElement).getPropertyValue('--card-color4'));
-// color_array.push(getComputedStyle(document.documentElement).getPropertyValue('--card-color2'));
-// color_array.push(getComputedStyle(document.documentElement).getPropertyValue('--background-navbar-color'));
-color_array.push(getComputedStyle(document.documentElement).getPropertyValue('--card-color4'));
-var num_cards = $('.grid-item-card').length;
 AOS.init();
 // init Isotope
 var $skillgrid = $('#facts .grid');
 var $maingrid = $('.layout-grid');
 var previousSkill = '';
-
-// randomizeGridCardColors();
-
-
-
-function randomizeGridCardColors() {
-    var num_color;
-    for (var i = 0; i < num_cards; i++){
-        if (i%2 == 0){
-            num_color
-        }
-        num_color = Math.floor(Math.random() * color_array.length);
-        $('.grid-item-card')[i].style.backgroundColor = color_array[i%2];
-    }
-}
 
 // Generate skillcards goes here
 generateSkillCards();
