@@ -53,7 +53,6 @@ $skillgrid.on( 'click', '.grid-item-card', function() {
     setItemContentPixelSize( itemContent );
 
     var itemElem = itemContent.parentNode;
-    insertSkillDescription(itemElem);
 
     if (previousSkill == ''){
         //either the first, or its been clicked before
@@ -102,6 +101,7 @@ function addTransitionListener( itemContent ) {
     var onTransitionEnd = function() {
         itemContent.style.width = '';
         itemContent.style.height = '';
+        insertSkillDescription(itemContent.parentNode);
         itemContent.removeEventListener( transitionEndEvent, onTransitionEnd );
     };
     itemContent.addEventListener( transitionEndEvent, onTransitionEnd );

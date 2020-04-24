@@ -4,9 +4,8 @@
     --primary-color: #b71c1c;
     --text-emphasis: #ffffffdd;
     --background-navbar-color:#0D0D0D;
-    /* --background-body-color: rgba(183, 28, 28, 0.03); */
-    --background-body-color: #121212;
-
+    --background-color: #121212;
+    --background-body-color: #1212122d;
     --text-color: #ffffffb4;
     --navbar-text-color: #ffffffd7;
     --card-color1:#400202; 
@@ -16,8 +15,9 @@
     --card-color4: rgba(166, 5, 5, 0.137);
     /* primary color with 5% opacity */
     --resume-summary-card-color: #730202;
-    --section-card-color: rgba(255, 255, 255, 0.02);
-}
+    /* --section-card-color: rgba(255, 255, 255, 0.02);*/
+    --section-card-color: #121212ec;
+} 
 
 .name {
     padding-top: 1.5rem !important;
@@ -41,7 +41,7 @@
 }
 
 body {
-    background: var(--background-body-color);
+    background: var(--background-color);
     font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: var(--text-color);
     font-size: 24px;
@@ -67,10 +67,13 @@ header {
     transition: all 0.5s;
     overflow-y: auto;
     overflow-x: hidden;
-    position: static;
+    position: sticky;
     z-index: 0;
 }
-
+#main-canvas{
+    top:0;
+    
+}
 
 .main-wrapper {
     margin-left: 1rem;

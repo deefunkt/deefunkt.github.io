@@ -6,6 +6,7 @@ function generateSkillCards(){
         var testcard = $skillproto.clone()
         testcard.find('.card-title').text(skill.name);
         testcard.find('.icon')[0].src = skill.img;
+        testcard.find('.grid-card-description').text('');
         testcard[0].className = '';
         for (classname of skill.tags){
             testcard.addClass(classname);

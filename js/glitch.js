@@ -49,7 +49,7 @@ function setup() {
 function draw() {
     // p5.js function
     clear();
-    background(1);
+    background('#121212');
     
     // if (isLoaded) {
     //     glitch.show();
@@ -391,10 +391,10 @@ class ParticleOrbits{
             // PD controller
 			this.RADIUS_SCALE -= ( this.RADIUS_SCALE - this.RADIUS_SCALE_MIN ) * (0.02);
 		}
-		// Fade out the lines slowly by drawing a rectangle over the background to the name text
-        fill('rgba(18, 18, 18, 0.35)');
-        rectMode(RADIUS);
-        rect(floor(width/2), floor(height/2), floor(width/8), (floor(height/8)));
+		// // Fade out the lines slowly by drawing a rectangle over the background to the name text
+        // fill('rgba(18, 18, 18, 0.35)');
+        // rectMode(RADIUS);
+        // rect(floor(width/2), floor(height/2), floor(width/8), (floor(height/8)));
         
 		for (let i = 0, len = this.particles.length; i < len; i++) {
 			var particle = this.particles[i];
