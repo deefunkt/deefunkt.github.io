@@ -42,7 +42,16 @@ function setup() {
     canvas.mousePressed(()=> {
         particles.mouseIsDown = true;
     });
-    canvas.touchStarted(particles.touchStartHandler);
+    canvas.mouseClicked(()=> {
+        particles.flipDirections = true;
+    });
+    canvas.touchStarted(()=> {
+        if(touches.length == 1) {
+            // maybe need to disable default?
+			particles.shift.x = touches[0].x;
+			particles.shift.y = touches[0].y;
+		}
+    });
     canvas.touchMoved(particles.touchMoveHandler);
     // canvas.mousePressed(onMousePressed)
     // Set text characteristics
@@ -352,6 +361,7 @@ class ParticleOrbits{
         this.arcRadius = this.RADIUS;
         // The number of particles that are used to generate the trail
         this.num_particles = 30;
+        this.flipDirections = false;
         this.itercount = 0;
 		
 		for (var i = 0; i < this.num_particles; i++) {
@@ -375,11 +385,7 @@ class ParticleOrbits{
 	}
 	
 	touchStartHandler(event) {
-		if(touches.length == 1) {
-            // maybe need to disable default?
-			this.centreX = touches[0].x;
-			this.centreY = touches[0].y;
-		}
+		
 	}
 	
 	touchMoveHandler(event) {
@@ -417,6 +423,7 @@ class ParticleOrbits{
                 // spontaneous emission/absorbtion
                 particle.orbit = -1*(this.RADIUS*.5 + (this.RADIUS * .5 * Math.random()));
                 this.arcRadius = this.RADIUS*.5 + (this.RADIUS * .5 * Math.random());
+                particle.fillColor = '#' + (Math.random()*0x404040+0xaaaaaa | 0).toString(16);
             }
             var lastTheta = particle.angle;
 			// Offset the angle to keep the spin going
@@ -429,7 +436,6 @@ class ParticleOrbits{
 			// Apply position
 			particle.position.x = particle.shift.x + Math.cos(i + particle.angle) * (particle.orbit*this.RADIUS_SCALE);
 			particle.position.y = particle.shift.y - Math.sin(i + particle.angle) * (particle.orbit*this.RADIUS_SCALE);
-			
 			// Limit to screen bounds
 			particle.position.x = Math.max( Math.min( particle.position.x, width), 0 );
 			particle.position.y = Math.max( Math.min( particle.position.y, height), 0 );

@@ -4,10 +4,9 @@ AOS.init();
 var $skillgrid = $('#facts .grid');
 var $maingrid = $('.layout-grid');
 var previousSkill = '';
-
+window.scrollTo(0,1);
 // Generate skillcards goes here
 generateSkillCards();
-
 function initializeIsotopes(){
     
 }
