@@ -55,7 +55,7 @@ function setup() {
 
 function draw() {
     // p5.js function
-    clear();
+    // clear();
     background('#121212');
     
     // if (isLoaded) {
@@ -66,12 +66,16 @@ function draw() {
     //     running = false;
     // }
     particles.loop();
+    // overlay circle to help text legibility especially on small screens
+    noStroke();
+    fill('rgba(12, 12, 12, 0.3)');
+    ellipse(particles.centreX, particles.centreY, 160);
     fill(255, 255, 255)
     textSize(fontsize);
     text('deefunkt', width*0.5, height*0.5);
     fill(255, 255, 255);
     textSize(14);
-    text('FPS: ' + floor(frameRate()), 20, 30);
+    text('FPS: ' + floor(frameRate()), 30, 30);
 
 }
 function onMousePressed(){
@@ -344,7 +348,7 @@ class ParticleOrbits{
         }
         this.RADIUS_SCALE = 1;
         this.RADIUS_SCALE_MIN = 1;
-        this.RADIUS_SCALE_MAX = 1.5;
+        this.RADIUS_SCALE_MAX = 1.2;
         this.arcRadius = this.RADIUS;
         // The number of particles that are used to generate the trail
         this.num_particles = 30;
@@ -358,7 +362,7 @@ class ParticleOrbits{
 				angle: 0,
 				speed: 0.01+Math.random()*0.04,
 				targetSize: 1,
-				fillColor: '#' + (Math.random() * 0x404040 + 0xaaaaaa | 0).toString(16),
+				fillColor: '#' + (Math.random()*0x404040+0xaaaaaa | 0).toString(16),
 				orbit: this.RADIUS*.5 + (this.RADIUS * .5 * Math.random())
 			};
 			
@@ -402,10 +406,6 @@ class ParticleOrbits{
             // PD controller
 			this.RADIUS_SCALE -= ( this.RADIUS_SCALE - this.RADIUS_SCALE_MIN ) * (0.02);
 		}
-		// // Fade out the lines slowly by drawing a rectangle over the background to the name text
-        // fill('rgba(18, 18, 18, 0.35)');
-        // rectMode(RADIUS);
-        // rect(floor(width/2), floor(height/2), floor(width/8), (floor(height/8)));
         
 		for (let i = 0, len = this.particles.length; i < len; i++) {
 			var particle = this.particles[i];
@@ -413,20 +413,19 @@ class ParticleOrbits{
                 x: particle.position.x, 
                 y: particle.position.y 
             };
-            if (10000*Math.random() > 9990){
-                particle.orbit = this.RADIUS*.5 + (this.RADIUS * .5 * Math.random());
+            if (10000*Math.random() > 9950){
+                // spontaneous emission/absorbtion
+                particle.orbit = -1*(this.RADIUS*.5 + (this.RADIUS * .5 * Math.random()));
                 this.arcRadius = this.RADIUS*.5 + (this.RADIUS * .5 * Math.random());
-            // }else if (1000*Math.random()> 700){
-            //     particle.orbit = this.RADIUS_SCALE*particle.orbit;
-            //     this.arcRadius = this.RADIUS_SCALE*this.arcRadius;
             }
             var lastTheta = particle.angle;
 			// Offset the angle to keep the spin going
 			particle.angle += particle.speed;
-			// Follow mouse with some lag
-			// particle.shift.x += ( mouseX - particle.shift.x) * (particle.speed);
-			// particle.shift.y += ( mouseY - particle.shift.y) * (particle.speed);
-			
+            // // Follow mouse with some lag
+            // if (i%5 == 0){
+            //     particle.shift.x += ( mouseX - particle.shift.x) * (particle.speed)*(i%15)/45;
+            //     particle.shift.y += ( mouseY - particle.shift.y) * (particle.speed)*(i%15)/45;
+            // }
 			// Apply position
 			particle.position.x = particle.shift.x + Math.cos(i + particle.angle) * (particle.orbit*this.RADIUS_SCALE);
 			particle.position.y = particle.shift.y - Math.sin(i + particle.angle) * (particle.orbit*this.RADIUS_SCALE);
@@ -441,21 +440,31 @@ class ParticleOrbits{
 			if( Math.round( particle.size ) == Math.round( particle.targetSize ) ) {
 				particle.targetSize = 1 + Math.random() * 7;
 			}
-			push();
+            push();
+            
 			beginShape();
 			fill(particle.fillColor);
 			stroke(particle.fillColor);
             strokeWeight(particle.size);
             line(lp.x, lp.y, particle.position.x, particle.position.y)
             noFill();
-            // if (1%5==0){
-                arc(particle.shift.x, particle.shift.y, 
-                    particle.orbit,particle.orbit, 
-                    lastTheta-0.1, particle.angle+2,);
-            // }
+            arc(particle.shift.x, particle.shift.y, 
+                particle.orbit,particle.orbit, 
+                lastTheta, particle.angle+0.6,);
             endShape();
+
+            noFill();
+            if (i%2 == 0){
+                stroke('rgba(15, 15, 15, 0.15)');
+                strokeWeight(particle.size*1.2);
+                for (var j=0; j<30;j++){                    
+                    arc(particle.shift.x, particle.shift.y, 
+                        particle.orbit,particle.orbit, 
+                        lastTheta, particle.angle+(j/50),);
+                }
+            }
             pop();
-            fill(particle.fillColor);
+            // fill(particle.fillColor);
             // text(str(lastTheta), width*0.5, height*0.5);
         
         }

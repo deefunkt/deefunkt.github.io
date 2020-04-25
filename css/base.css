@@ -5,18 +5,18 @@
     --text-emphasis: #ffffffdd;
     --background-navbar-color:#0D0D0D;
     --background-color: #121212;
-    --background-body-color: #1212122d;
-    --text-color: #ffffffb4;
+    --background-body-color: #1212122c;
+    --text-color: #ffffffbd;
     --navbar-text-color: #ffffffd7;
     --card-color1:#40020294; 
     --card-color2:#73020296;
     --card-color3:rgba(166, 5, 5, 0.534);
     /* --card-color4:#260101; */
-    --card-color4: rgba(166, 5, 5, 0.137);
+    --card-color4: rgba(166, 5, 5, 0.199);
     /* primary color with 5% opacity */
     --resume-summary-card-color: #730202a6;
     /* --section-card-color: rgba(255, 255, 255, 0.02);*/
-    --section-card-color: #121212ec;
+    --section-card-color: #121212ce;
 } 
 
 .name {
@@ -76,8 +76,7 @@ header {
 }
 
 .main-wrapper {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin:0;
     background: var(--background-body-color);
     z-index: 1;
 }
@@ -95,7 +94,7 @@ section {
     background-color: var(--section-card-color);
     margin: auto;
     margin-bottom: 1rem;
-    padding: 1.5rem;
+    padding: 0.6rem;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.441), 0 3px 8px rgba(0, 0, 0, 0.441);
     border-radius: 0.15rem;
 }
@@ -103,21 +102,32 @@ section {
 .section-title h2 {
     font-size: 2rem;
     position: relative;
-    padding-left: 1.5rem
 }
 
-.section-title h2:before {
+.section-title h2::before, .section-card > h3.resume-title::before {
     content: "";
     display: inline-block;
     width: 0.4rem;
-    height: 100%;
+    height: 3rem;
     background: var(--primary-color);
-    position: absolute;
+    position: relative;
+    margin-right: 1.5rem;
     border-radius: 0.15rem;
     left: 0;
     top: 0
 }
-
+.myli::before{
+    content: "";
+    display: inline-block;
+    width: 0.4rem;
+    height: 1rem;
+    background: var(--primary-color);
+    position: relative;
+    margin-right: 0.5rem;
+    border-radius: 0.15rem;
+    left: 0;
+    top: 0
+}
 .progress {
     display: -ms-flexbox;
     display: flex;
@@ -199,10 +209,10 @@ section {
     margin: auto;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.458), 0 3px 8px rgba(0, 0, 0, 0.341);
     width: 100%;
-    height: 100%;
+    height: auto;
     border: 2px solid hsla(0, 0%, 0%, 0.5);
-    -webkit-transition: width 0.4s, height 0.4s;
-            transition: width 0.4s, height 0.4s;
+    -webkit-transition: width 0.2s, height 0.2s;
+            transition: width 0.2s, height 0.2s;
 }
 
 .grid-item:hover .grid-item-card:hover{
@@ -213,15 +223,24 @@ section {
 /* both item and item content change size */
 .grid-item.is-expanded {
     width: 50%;
-    height: 200px;
+    height: auto;
+    font-size: 1rem;
     z-index: 2;
   }
-  
 
 .grid-item:active .grid-item-card:active {
     background: var(--card-color2)
 }
-
+.grid-item-card .grid-card-description p{
+    font-size: 0;
+    word-break: break-word;
+    height: fit-content;
+    -webkit-transition: font-size 0.2s;
+    transition: font-size 0.2s;
+}
+.grid-item.is-expanded .grid-card-description p{
+    font-size: 1rem;
+  }
 .grid-item.is-expanded .grid-item-card {
   background: var(--card-color2)
 }
@@ -312,6 +331,9 @@ section {
     .grid-item {
         width: 33%;
     }
+    .grid-item.is-expanded {
+        width: 66%;
+    }
     .grid-item-card img{ 
         max-height: 2.5rem;
         margin-left: auto;
@@ -336,6 +358,9 @@ section {
     .grid-item {
         width: 50%;
     }
+    .grid-item.is-expanded {
+        width: 100%;
+    }
 }
   @media screen and (max-width: 600px) {
     
@@ -347,11 +372,12 @@ section {
     /* both item and item content change size */
     .grid-item.is-expanded {
         width: 100%;
-        height: 200px;
+        height: auto;
         z-index: 2;
     }
     .layout-grid-sizer, 
     #main .layout-grid-item { width: 100%; }
+    .main-wrapper{margin: 0;}
 
     
     #facts .grid-item-card h6 {

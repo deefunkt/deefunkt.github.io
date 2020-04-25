@@ -7,6 +7,7 @@ var previousSkill = '';
 
 // Generate skillcards goes here
 generateSkillCards();
+
 function initializeIsotopes(){
     
 }
@@ -50,7 +51,6 @@ $('#facts .filters').each( function( i, typeGroup ) {
 $skillgrid.on( 'click', '.grid-item-card', function() {
 
     var itemContent = this;
-    setItemContentPixelSize( itemContent );
 
     var itemElem = itemContent.parentNode;
 
@@ -73,8 +73,6 @@ $skillgrid.on( 'click', '.grid-item-card', function() {
     addTransitionListener( itemContent );
     setItemContentTransitionSize( itemContent, itemElem );
 
-    $skillgrid.isotope('layout');
-    $maingrid.isotope('layout');
 });
 
 var docElemStyle = document.documentElement.style;
@@ -84,14 +82,6 @@ var transitionEndEvent = {
     transition: 'transitionend'
 }[ transitionProp ];
 
-function setItemContentPixelSize( itemContent ) {
-    var previousContentSize = getSize( itemContent );
-    // disable transition
-    itemContent.style[ transitionProp ] = 'none';
-    // set current size in pixels
-    itemContent.style.width = previousContentSize.width + 'px';
-    itemContent.style.height = previousContentSize.height + 'px';
-}
 
 function addTransitionListener( itemContent ) {
     if ( !transitionProp ) {
@@ -101,7 +91,8 @@ function addTransitionListener( itemContent ) {
     var onTransitionEnd = function() {
         itemContent.style.width = '';
         itemContent.style.height = '';
-        insertSkillDescription(itemContent.parentNode);
+        $skillgrid.isotope('layout');
+        $maingrid.isotope('layout');
         itemContent.removeEventListener( transitionEndEvent, onTransitionEnd );
     };
     itemContent.addEventListener( transitionEndEvent, onTransitionEnd );
