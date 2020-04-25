@@ -1,20 +1,20 @@
 :root {
     background-color: #121212;
     --navbar-width: 15%;
-    --primary-color: #b71c1c;
+    --primary-color: #b71c1cd2;
     --text-emphasis: #ffffffdd;
     --background-navbar-color:#0D0D0D;
     --background-color: #121212;
     --background-body-color: #1212122d;
     --text-color: #ffffffb4;
     --navbar-text-color: #ffffffd7;
-    --card-color1:#400202; 
-    --card-color2:#730202;
-    --card-color3:#A60505;
+    --card-color1:#40020294; 
+    --card-color2:#73020296;
+    --card-color3:rgba(166, 5, 5, 0.534);
     /* --card-color4:#260101; */
     --card-color4: rgba(166, 5, 5, 0.137);
     /* primary color with 5% opacity */
-    --resume-summary-card-color: #730202;
+    --resume-summary-card-color: #730202a6;
     /* --section-card-color: rgba(255, 255, 255, 0.02);*/
     --section-card-color: #121212ec;
 } 

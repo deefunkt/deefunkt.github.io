@@ -1,5 +1,6 @@
 let windowW = window.innerWidth;
 let windowH = window.innerHeight;
+let particles;
 let isLoaded = false;
 let glitch;
 let font,  fontsize = 40;
@@ -9,6 +10,12 @@ let running = true;
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
+    particles=new ParticleOrbits();
+    canvas.mousePressed(()=> {
+        particles.mouseIsDown = true;
+    });
+    canvas.touchStarted(particles.touchStartHandler);
+    canvas.touchMoved(particles.touchMoveHandler);
 }
 
 function preload() {
@@ -19,9 +26,9 @@ function preload() {
 
 function setup() {
     //p5.js function
-    background(0);
-    let canvas = createCanvas(windowW, windowH);
+    canvas = createCanvas(windowW, windowH);
     canvas.parent('main-canvas');
+    background(0);
     // img = loadImage('../images/redfabric.jpg', function(img) {
     //     img.resize(windowWidth, windowHeight);
     //     glitch = new Glitch(img);
@@ -330,7 +337,11 @@ class ParticleOrbits{
         this.mouseIsDown = false;
         this.centreX = floor(width/2);
         this.centreY = floor(height/2);
-        this.RADIUS = 310;
+        if (width > height){
+            this.RADIUS = width*0.2*Math.sqrt(2);
+        }else{
+            this.RADIUS = height*0.2*Math.sqrt(2);
+        }
         this.RADIUS_SCALE = 1;
         this.RADIUS_SCALE_MIN = 1;
         this.RADIUS_SCALE_MAX = 1.5;
