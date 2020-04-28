@@ -7,16 +7,17 @@ let font,  fontsize = 40;
 let imgSrc;
 let img;
 let running = true;
+let pulsePeriod = 45;
+let pulseTracker = 0;
+let radius_scaler;
 
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-    particles=new ParticleOrbits();
+    particles= new ParticleOrbits();
     canvas.mousePressed(()=> {
         particles.mouseIsDown = true;
     });
-    canvas.touchStarted(particles.touchStartHandler);
-    canvas.touchMoved(particles.touchMoveHandler);
 }
 
 function preload() {
@@ -24,6 +25,11 @@ function preload() {
 }
 
 function setup() {
+    if (width > height){
+        radius_scaler = width*0.2*Math.sqrt(2);
+    }else{
+        radius_scaler = height*0.2*Math.sqrt(2);
+    }
     //p5.js function
     canvas = createCanvas(windowW, windowH);
     canvas.parent('main-canvas');
@@ -36,9 +42,6 @@ function setup() {
     canvas.mousePressed(()=> {
         particles.mouseIsDown = true;
     });
-    canvas.mouseClicked(()=> {
-        particles.flipDirections = true;
-    });
     canvas.touchStarted(()=> {
         if(touches.length == 1) {
             // maybe need to disable default?
@@ -46,7 +49,6 @@ function setup() {
 			particles.shift.y = touches[0].y;
 		}
     });
-    canvas.touchMoved(particles.touchMoveHandler);
     textSize(fontsize);
     textAlign(CENTER, CENTER);
     fill(255);
@@ -77,18 +79,7 @@ function draw() {
     textSize(14);
     text('FPS: ' + floor(frameRate()), 30, 30);
     pop();
-
 }
-// function onMousePressed(){
-//     img = loadImage(canvas.toDataURL(), function(img) {
-//             img.resize(windowWidth, windowHeight);
-//             glitch = new Glitch(img);
-//             isLoaded = true;
-//         });
-//     if (isLoaded) {
-//         glitch.show();
-//     }
-// }
 
 function isScrolledIntoView(el) {
     var rect = el.getBoundingClientRect();
@@ -353,9 +344,7 @@ class ParticleOrbits{
         this.arcRadius = this.RADIUS;
         // The number of particles that are used to generate the trail
         this.num_particles = 30;
-        this.flipDirections = false;
 
-		
 		for (var i = 0; i < this.num_particles; i++) {
 			var particle = {
 				position: {x: this.centreX, y: this.centreY},
@@ -365,42 +354,30 @@ class ParticleOrbits{
 				speed: 0.01+Math.random()*0.04,
 				targetSize: 1,
 				fillColor: '#' + (Math.random()*0x404040+0xaaaaaa | 0).toString(16),
-				orbit: this.RADIUS*.5 + (this.RADIUS * .5 * Math.random())
+                orbit: 0.5*this.RADIUS*(1 + Math.random()),
+                lowerOrbit: this.RADIUS
 			};
-			
 			this.particles.push( particle );
 		}
 	}
 	
-	mouseDownHandler() {
-		this.mouseIsDown = true;
-	}
-	
-	touchStartHandler(event) {
-		
-	}
-	
-	touchMoveHandler(event) {
-		if(touches.length == 1) {
-			// maybe need to disable default?
-
-			this.centreX = touches[0].x;
-			this.centreY = touches[0].y;
-		}
-	}
-	
 	loop() {
-		if( mouseIsPressed ) {
+        pulseTracker++;
+        if (pulseTracker>pulsePeriod){
+            pulseTracker = -pulsePeriod;
+        }
+		if( mouseIsPressed || touches.length) {
             // Scale upward to the max scale
             // PD controller
-			this.RADIUS_SCALE += ( this.RADIUS_SCALE_MAX - this.RADIUS_SCALE ) * (0.02);
+            pulsePeriod -= ( pulsePeriod - 12 ) * (0.02);
+            this.RADIUS_SCALE += ( this.RADIUS_SCALE_MAX - this.RADIUS_SCALE ) * (0.04);
 		}
 		else {
             // Scale downward to the min scale
             // PD controller
-			this.RADIUS_SCALE -= ( this.RADIUS_SCALE - this.RADIUS_SCALE_MIN ) * (0.02);
-		}
-        
+            pulsePeriod += ( 50 - pulsePeriod ) * (0.2);
+            this.RADIUS_SCALE -= ( this.RADIUS_SCALE - this.RADIUS_SCALE_MIN ) * (0.04);
+        }
 		for (let i = 0, len = this.particles.length; i < len; i++) {
 			var particle = this.particles[i];
             var lp = {
@@ -409,58 +386,48 @@ class ParticleOrbits{
             };
             if (10000*Math.random() > 9950){
                 // spontaneous emission/absorbtion
-                particle.orbit = -1*(this.RADIUS*.5 + (this.RADIUS * .5 * Math.random()));
-                this.arcRadius = this.RADIUS*.5 + (this.RADIUS * .5 * Math.random());
+                particle.lowerOrbit = -0.5*this.RADIUS*(1 + Math.random());
                 particle.fillColor = '#' + (Math.random()*0x404040+0xaaaaaa | 0).toString(16);
             }
             var lastTheta = particle.angle;
 			// Offset the angle to keep the spin going
 			particle.angle += particle.speed;
-            // // Follow mouse with some lag
-            // if (i%5 == 0){
-            //     particle.shift.x += ( mouseX - particle.shift.x) * (particle.speed)*(i%15)/45;
-            //     particle.shift.y += ( mouseY - particle.shift.y) * (particle.speed)*(i%15)/45;
-            // }
-			// Apply position
 			particle.position.x = particle.shift.x + Math.cos(i + particle.angle) * (particle.orbit*this.RADIUS_SCALE);
 			particle.position.y = particle.shift.y - Math.sin(i + particle.angle) * (particle.orbit*this.RADIUS_SCALE);
 			// Limit to screen bounds
 			particle.position.x = Math.max( Math.min( particle.position.x, width), 0 );
 			particle.position.y = Math.max( Math.min( particle.position.y, height), 0 );
-			
 			particle.size += ( particle.targetSize - particle.size ) * 0.05;
 			
 			// If we're at the target size, set a new one.
 			if( Math.round( particle.size ) == Math.round( particle.targetSize ) ) {
 				particle.targetSize = 1 + Math.random() * 7;
-			}
+            }
             push();
-            
 			beginShape();
 			fill(particle.fillColor);
 			stroke(particle.fillColor);
             strokeWeight(particle.size);
             line(lp.x, lp.y, particle.position.x, particle.position.y)
             noFill();
+            // lower orbital pulse
+            strokeWeight(particle.size/2);
             arc(particle.shift.x, particle.shift.y, 
-                particle.orbit,particle.orbit, 
+                particle.lowerOrbit*(1-0.1/Math.cosh(pulseTracker/6)),particle.lowerOrbit*(1-0.1/Math.cosh(pulseTracker/6)), 
                 lastTheta, particle.angle+0.6,);
             endShape();
-
             noFill();
+            // draw fading tails
             if (i%2 == 0){
                 stroke('rgba(15, 15, 15, 0.15)');
                 strokeWeight(particle.size*1.2);
                 for (var j=0; j<30;j++){                    
                     arc(particle.shift.x, particle.shift.y, 
-                        particle.orbit,particle.orbit, 
-                        lastTheta, particle.angle+(j/50),);
+                        particle.lowerOrbit*(1-0.1/Math.cosh(pulseTracker/6)),particle.lowerOrbit*(1-0.1/Math.cosh(pulseTracker/6)),  
+                        lastTheta, particle.angle+(j/45));
                 }
             }
-            pop();
-            // fill(particle.fillColor);
-            // text(str(lastTheta), width*0.5, height*0.5);
-        
+            pop();       
         }
 	}
 }
