@@ -48,11 +48,8 @@ $('#facts .filters').each( function( i, typeGroup ) {
 
 // expand skillgrid items when clicked
 $skillgrid.on( 'click', '.grid-item-card', function() {
-
     var itemContent = this;
-
     var itemElem = itemContent.parentNode;
-
     if (previousSkill == ''){
         //either the first, or its been clicked before
         previousSkill = itemElem;
